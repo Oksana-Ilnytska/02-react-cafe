@@ -1,8 +1,8 @@
-
-import { voteState } from 'react';
+import { useState } from 'react';
 import CafeInfo from '../CafeInfo/CafeInfo';
 
 import VoteOptions from '../VoteOptions/VoteOptions';
+import VoteStats from '../VoteStats/VoteStats';
 import Notification from '../Notification/Notification';
 import type { VoteType, Votes } from '../types/votes';
 
@@ -16,7 +16,7 @@ export default function App() {
   });
 
   const handleVote = (type: VoteType) => {
-    setVotes(newVotes => ({
+    setVotes((newVotes) => ({
       ...newVotes,
       [type]: newVotes[type] + 1,
     }));
@@ -36,17 +36,17 @@ export default function App() {
     ? Math.round((votes.good / totalVotes) * 100)
     : 0;
 
-    return (
-      <div className={css.app}>
-        <CafeInfo />
-  
-        <VoteOptions
-          onVote={handleVote}
-          onReset={resetVotes}
-          canReset={totalVotes > 0}
-        />
+  return (
+    <div className={css.app}>
+      <CafeInfo />
 
-{totalVotes > 0 ? (
+      <VoteOptions
+        onVote={handleVote}
+        onReset={resetVotes}
+        canReset={totalVotes > 0}
+      />
+
+      {totalVotes > 0 ? (
         <VoteStats
           votes={votes}
           totalVotes={totalVotes}
@@ -58,38 +58,3 @@ export default function App() {
     </div>
   );
 }
-
-
-/*<div className={css.app}></div>;
-
-
-
-
-interface CounterVotes {
-  good: number;
-  neutral: number;
-  bad: number;
-}
-
-function App() {
-  const [votes, setVotes] = useStats<CounterVotes>({
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  });
-
-
-  const handleClick = (key: keyof CounterVotes) => {
-    setVotes = votes  + 1 };
-
-    //setVotes = { ...votes, [key]: votes[key] + 1 };
-  };
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {};
-  return (
-    <div>
-      <button onClick={handleClick}></button>
-    </div>
-  );
-}
-
-export default App;

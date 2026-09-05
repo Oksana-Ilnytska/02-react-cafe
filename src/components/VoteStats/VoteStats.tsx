@@ -15,19 +15,19 @@ export default function VoteStats({
   return (
     <div className={css.container}>
       <p className={css.stat}>
-        Good: <strong>0</strong>
+        Good: <strong>{votes.good}</strong>
       </p>
       <p className={css.stat}>
-        Neutral: <strong>0</strong>
+        Neutral: <strong>{votes.neutral}</strong>
       </p>
       <p className={css.stat}>
-        Bad: <strong>0</strong>
+        Bad: <strong>{votes.bad}</strong>
       </p>
       <p className={css.stat}>
-        Total: <strong>0</strong>
+        Total: <strong>{totalVotes}</strong>
       </p>
       <p className={css.stat}>
-        Positive: <strong>0%</strong>
+        Positive: <strong>{positiveRate}%</strong>
       </p>
     </div>
   );
